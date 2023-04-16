@@ -297,7 +297,7 @@ namespace TeamDigitalJB
             this.textBoxDescription.Size = new System.Drawing.Size(586, 196);
             this.textBoxDescription.TabIndex = 23;
             this.textBoxDescription.TabStop = false;
-            this.textBoxDescription.Text = "SYSTEM AUTOMATION SOFTWARE \r\n";
+            this.textBoxDescription.Text = "JBalestrine SYSTEM AUTOMATION SOFTWARE \r\n";
             this.textBoxDescription.TextChanged += new System.EventHandler(this.textBoxDescription_TextChanged);
             // 
             // okButton
