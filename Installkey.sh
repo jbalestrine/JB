@@ -1,1 +1,0 @@
-export OPENAI_KEY=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
