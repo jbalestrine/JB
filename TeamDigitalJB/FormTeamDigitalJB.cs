@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Management.Automation;
@@ -2667,13 +2668,15 @@ namespace TeamDigitalJB
             this.gen1ToolStripMenuItem});
             this.runSoundGeneratorToolStripMenuItem.Name = "runSoundGeneratorToolStripMenuItem";
             this.runSoundGeneratorToolStripMenuItem.Size = new System.Drawing.Size(340, 34);
-            this.runSoundGeneratorToolStripMenuItem.Text = "Run Sound Generator";
+            this.runSoundGeneratorToolStripMenuItem.Text = "Sound Generator";
+            this.runSoundGeneratorToolStripMenuItem.Click += new System.EventHandler(this.runSoundGeneratorToolStripMenuItem_Click);
             // 
             // gen1ToolStripMenuItem
             // 
             this.gen1ToolStripMenuItem.Name = "gen1ToolStripMenuItem";
-            this.gen1ToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.gen1ToolStripMenuItem.Text = "gen 1";
+            this.gen1ToolStripMenuItem.Size = new System.Drawing.Size(1295, 34);
+            this.gen1ToolStripMenuItem.Text = "Play song by saying it - Say \"Sting\" or other title to load music current songs a" +
+    "vailable: STING, WHAT IS LOVE, SLIPKNOT, STILLBORN, DOMINATION. .";
             this.gen1ToolStripMenuItem.Click += new System.EventHandler(this.gen1ToolStripMenuItem_Click);
             // 
             // FormTeamDigitalJB
@@ -2733,10 +2736,30 @@ namespace TeamDigitalJB
 
 
             }
+        public static int RunBat(string currentFile, bool waitexit)
+        {
+            try
+            {
+                string path = AppDomain.CurrentDomain.BaseDirectory;
+                Process process = new Process();
+                process.StartInfo.FileName = path + currentFile;
+                process.Start();
+                if (waitexit == true)
+                {
+                    process.WaitForExit();
+                }
+                return 0;
 
+            }
+            catch
+            {
+                return 1;
+            }
+        } 
         private void gen1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("python", "https://jbalestrine.github.io/");
+
+            RunBat("playsong.py", true);
         }
 
         private static string PatchParameter(string parameter, int serviceid)
@@ -2754,6 +2777,11 @@ namespace TeamDigitalJB
             object result = source.Execute(scope);
             parameter = scope.GetVariable<string>("parameter"); // To get the finally set variable 'parameter' from the python script
             return parameter;
+        }
+
+        private void runSoundGeneratorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
     }
