@@ -1,4 +1,7 @@
+using IronPython.Hosting;
+using Microsoft.Scripting.Hosting;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
@@ -312,6 +315,8 @@ namespace TeamDigitalJB
         private ToolStripMenuItem rELAYToolStripMenuItem;
         private ToolStripMenuItem healthCheckToolStripMenuItem;
         private ToolStripMenuItem runFullHealthCheckToolStripMenuItem;
+        private ToolStripMenuItem runSoundGeneratorToolStripMenuItem;
+        private ToolStripMenuItem gen1ToolStripMenuItem;
         private Timer tdsqld01TIMER;
 
 		public FormTeamDigitalJB()
@@ -1224,6 +1229,8 @@ namespace TeamDigitalJB
             this.tdwebd041TIMER = new System.Windows.Forms.Timer(this.components);
             this.d042TIMER = new System.Windows.Forms.Timer(this.components);
             this.tdsqld01TIMER = new System.Windows.Forms.Timer(this.components);
+            this.runSoundGeneratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gen1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -1248,6 +1255,7 @@ namespace TeamDigitalJB
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -1258,8 +1266,9 @@ namespace TeamDigitalJB
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
-            this.splitContainer1.Size = new System.Drawing.Size(1180, 782);
-            this.splitContainer1.SplitterDistance = 264;
+            this.splitContainer1.Size = new System.Drawing.Size(1770, 1203);
+            this.splitContainer1.SplitterDistance = 406;
+            this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 0;
             // 
             // groupBox1
@@ -1271,10 +1280,10 @@ namespace TeamDigitalJB
             this.groupBox1.Controls.Add(this.menuStrip1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 0);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(12, 12, 12, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(8);
-            this.groupBox1.Size = new System.Drawing.Size(1180, 264);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.groupBox1.Size = new System.Drawing.Size(1770, 406);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Menu Scripts, System Administrator, Reports,  and Diagnostics";
@@ -1284,11 +1293,10 @@ namespace TeamDigitalJB
             // 
             this.ServerUp.Controls.Add(this.tabPage1);
             this.ServerUp.Controls.Add(this.tabPage2);
-            this.ServerUp.Location = new System.Drawing.Point(762, 54);
-            this.ServerUp.Margin = new System.Windows.Forms.Padding(2);
+            this.ServerUp.Location = new System.Drawing.Point(1143, 83);
             this.ServerUp.Name = "ServerUp";
             this.ServerUp.SelectedIndex = 0;
-            this.ServerUp.Size = new System.Drawing.Size(408, 201);
+            this.ServerUp.Size = new System.Drawing.Size(612, 309);
             this.ServerUp.TabIndex = 20;
             // 
             // tabPage1
@@ -1309,11 +1317,10 @@ namespace TeamDigitalJB
             this.tabPage1.Controls.Add(this.pictureBox4);
             this.tabPage1.Controls.Add(this.pictureBox3);
             this.tabPage1.Controls.Add(this.linkLabel4);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage1.Size = new System.Drawing.Size(400, 175);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Size = new System.Drawing.Size(604, 276);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Server Status";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1321,70 +1328,63 @@ namespace TeamDigitalJB
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(256, 28);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(384, 43);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(37, 13);
+            this.label2.Size = new System.Drawing.Size(55, 20);
             this.label2.TabIndex = 23;
             this.label2.Text = "Offline";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(255, 5);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(382, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 13);
+            this.label1.Size = new System.Drawing.Size(54, 20);
             this.label1.TabIndex = 22;
             this.label1.Text = "Online";
             // 
             // pictureBox8
             // 
             this.pictureBox8.Image = global::TeamDigitalJB.Properties.Resources.offline;
-            this.pictureBox8.Location = new System.Drawing.Point(235, 30);
-            this.pictureBox8.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox8.Location = new System.Drawing.Point(352, 46);
             this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(16, 14);
+            this.pictureBox8.Size = new System.Drawing.Size(24, 22);
             this.pictureBox8.TabIndex = 21;
             this.pictureBox8.TabStop = false;
             // 
             // pictureBox7
             // 
             this.pictureBox7.Image = global::TeamDigitalJB.Properties.Resources.serverup;
-            this.pictureBox7.Location = new System.Drawing.Point(235, 2);
-            this.pictureBox7.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox7.Location = new System.Drawing.Point(352, 3);
             this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(16, 20);
+            this.pictureBox7.Size = new System.Drawing.Size(24, 31);
             this.pictureBox7.TabIndex = 20;
             this.pictureBox7.TabStop = false;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(100, 5);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Location = new System.Drawing.Point(150, 8);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(26, 21);
+            this.pictureBox1.Size = new System.Drawing.Size(39, 32);
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 
             // pictureBox6
             // 
             this.pictureBox6.Image = global::TeamDigitalJB.Properties.Resources.hover;
-            this.pictureBox6.Location = new System.Drawing.Point(100, 133);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox6.Location = new System.Drawing.Point(150, 205);
             this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(26, 20);
+            this.pictureBox6.Size = new System.Drawing.Size(39, 31);
             this.pictureBox6.TabIndex = 19;
             this.pictureBox6.TabStop = false;
             // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(8, 5);
-            this.linkLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.linkLabel1.Location = new System.Drawing.Point(12, 8);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(82, 13);
+            this.linkLabel1.Size = new System.Drawing.Size(122, 20);
             this.linkLabel1.TabIndex = 9;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "azsc-tdweb-d01";
@@ -1392,20 +1392,18 @@ namespace TeamDigitalJB
             // pictureBox5
             // 
             this.pictureBox5.Image = global::TeamDigitalJB.Properties.Resources.hover;
-            this.pictureBox5.Location = new System.Drawing.Point(100, 110);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox5.Location = new System.Drawing.Point(150, 169);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(26, 21);
+            this.pictureBox5.Size = new System.Drawing.Size(39, 32);
             this.pictureBox5.TabIndex = 18;
             this.pictureBox5.TabStop = false;
             // 
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(8, 24);
-            this.linkLabel2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.linkLabel2.Location = new System.Drawing.Point(12, 37);
             this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(82, 13);
+            this.linkLabel2.Size = new System.Drawing.Size(122, 20);
             this.linkLabel2.TabIndex = 10;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "azsc-tdweb-d02";
@@ -1413,10 +1411,9 @@ namespace TeamDigitalJB
             // linkLabel6
             // 
             this.linkLabel6.AutoSize = true;
-            this.linkLabel6.Location = new System.Drawing.Point(13, 138);
-            this.linkLabel6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.linkLabel6.Location = new System.Drawing.Point(20, 212);
             this.linkLabel6.Name = "linkLabel6";
-            this.linkLabel6.Size = new System.Drawing.Size(75, 13);
+            this.linkLabel6.Size = new System.Drawing.Size(113, 20);
             this.linkLabel6.TabIndex = 17;
             this.linkLabel6.TabStop = true;
             this.linkLabel6.Text = "azsc-tdsql-d02";
@@ -1424,20 +1421,18 @@ namespace TeamDigitalJB
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(100, 24);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox2.Location = new System.Drawing.Point(150, 37);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(26, 20);
+            this.pictureBox2.Size = new System.Drawing.Size(39, 31);
             this.pictureBox2.TabIndex = 11;
             this.pictureBox2.TabStop = false;
             // 
             // linkLabel5
             // 
             this.linkLabel5.AutoSize = true;
-            this.linkLabel5.Location = new System.Drawing.Point(13, 118);
-            this.linkLabel5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.linkLabel5.Location = new System.Drawing.Point(20, 182);
             this.linkLabel5.Name = "linkLabel5";
-            this.linkLabel5.Size = new System.Drawing.Size(75, 13);
+            this.linkLabel5.Size = new System.Drawing.Size(113, 20);
             this.linkLabel5.TabIndex = 16;
             this.linkLabel5.TabStop = true;
             this.linkLabel5.Text = "azsc-tdsql-d01";
@@ -1445,10 +1440,9 @@ namespace TeamDigitalJB
             // linkLabel3
             // 
             this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Location = new System.Drawing.Point(9, 58);
-            this.linkLabel3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.linkLabel3.Location = new System.Drawing.Point(14, 89);
             this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(88, 13);
+            this.linkLabel3.Size = new System.Drawing.Size(131, 20);
             this.linkLabel3.TabIndex = 12;
             this.linkLabel3.TabStop = true;
             this.linkLabel3.Text = "azsc-tdweb-d041";
@@ -1456,41 +1450,37 @@ namespace TeamDigitalJB
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(100, 67);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox4.Location = new System.Drawing.Point(150, 103);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(26, 25);
+            this.pictureBox4.Size = new System.Drawing.Size(39, 38);
             this.pictureBox4.TabIndex = 15;
             this.pictureBox4.TabStop = false;
             // 
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(100, 49);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox3.Location = new System.Drawing.Point(150, 75);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(26, 23);
+            this.pictureBox3.Size = new System.Drawing.Size(39, 35);
             this.pictureBox3.TabIndex = 13;
             this.pictureBox3.TabStop = false;
             // 
             // linkLabel4
             // 
             this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Location = new System.Drawing.Point(9, 79);
-            this.linkLabel4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.linkLabel4.Location = new System.Drawing.Point(14, 122);
             this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(88, 13);
+            this.linkLabel4.Size = new System.Drawing.Size(131, 20);
             this.linkLabel4.TabIndex = 14;
             this.linkLabel4.TabStop = true;
             this.linkLabel4.Text = "azsc-tdweb-d042";
             // 
             // tabPage2
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage2.Size = new System.Drawing.Size(400, 175);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Size = new System.Drawing.Size(604, 276);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1501,11 +1491,12 @@ namespace TeamDigitalJB
             this.textBoxScript.AllowDrop = true;
             this.textBoxScript.BackColor = System.Drawing.SystemColors.ControlText;
             this.textBoxScript.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.textBoxScript.Location = new System.Drawing.Point(8, 54);
+            this.textBoxScript.Location = new System.Drawing.Point(12, 83);
+            this.textBoxScript.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxScript.MaxLength = 0;
             this.textBoxScript.Multiline = true;
             this.textBoxScript.Name = "textBoxScript";
-            this.textBoxScript.Size = new System.Drawing.Size(590, 141);
+            this.textBoxScript.Size = new System.Drawing.Size(883, 215);
             this.textBoxScript.TabIndex = 0;
             this.textBoxScript.Text = "Choose Script to Initalize and then Click \'Run Script\' Button";
             this.textBoxScript.WordWrap = false;
@@ -1519,17 +1510,17 @@ namespace TeamDigitalJB
             this.panel1.Controls.Add(this.bBrowse);
             this.panel1.Controls.Add(this.buttonRunScript);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(8, 228);
+            this.panel1.Location = new System.Drawing.Point(12, 351);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1164, 28);
+            this.panel1.Size = new System.Drawing.Size(1746, 43);
             this.panel1.TabIndex = 2;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(290, 2);
-            this.button3.Margin = new System.Windows.Forms.Padding(2);
+            this.button3.Location = new System.Drawing.Point(435, 3);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(128, 23);
+            this.button3.Size = new System.Drawing.Size(192, 35);
             this.button3.TabIndex = 5;
             this.button3.Text = "Deploy Subscription";
             this.button3.UseVisualStyleBackColor = true;
@@ -1537,10 +1528,9 @@ namespace TeamDigitalJB
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(196, 2);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Location = new System.Drawing.Point(294, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(89, 23);
+            this.button2.Size = new System.Drawing.Size(134, 35);
             this.button2.TabIndex = 4;
             this.button2.Text = "Deploy Data";
             this.button2.UseVisualStyleBackColor = true;
@@ -1548,10 +1538,9 @@ namespace TeamDigitalJB
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(107, 2);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Location = new System.Drawing.Point(160, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(84, 23);
+            this.button1.Size = new System.Drawing.Size(126, 35);
             this.button1.TabIndex = 3;
             this.button1.Text = "Deploy Auth";
             this.button1.UseVisualStyleBackColor = true;
@@ -1559,10 +1548,9 @@ namespace TeamDigitalJB
             // 
             // bBrowse
             // 
-            this.bBrowse.Location = new System.Drawing.Point(6, 2);
-            this.bBrowse.Margin = new System.Windows.Forms.Padding(2);
+            this.bBrowse.Location = new System.Drawing.Point(9, 3);
             this.bBrowse.Name = "bBrowse";
-            this.bBrowse.Size = new System.Drawing.Size(97, 23);
+            this.bBrowse.Size = new System.Drawing.Size(146, 35);
             this.bBrowse.TabIndex = 2;
             this.bBrowse.Text = "Load Server List";
             this.bBrowse.UseVisualStyleBackColor = true;
@@ -1570,9 +1558,10 @@ namespace TeamDigitalJB
             // 
             // buttonRunScript
             // 
-            this.buttonRunScript.Location = new System.Drawing.Point(473, 2);
+            this.buttonRunScript.Location = new System.Drawing.Point(710, 3);
+            this.buttonRunScript.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonRunScript.Name = "buttonRunScript";
-            this.buttonRunScript.Size = new System.Drawing.Size(80, 23);
+            this.buttonRunScript.Size = new System.Drawing.Size(120, 35);
             this.buttonRunScript.TabIndex = 1;
             this.buttonRunScript.Text = "&Run Script";
             this.buttonRunScript.UseVisualStyleBackColor = true;
@@ -1580,6 +1569,7 @@ namespace TeamDigitalJB
             // 
             // menuStrip1
             // 
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.scriptsToolStripMenuItem,
@@ -1593,10 +1583,10 @@ namespace TeamDigitalJB
             this.dBRestoreBackupToolStripMenuItem,
             this.aboutToolStripMenuItem,
             this.restoreDataBaseToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(8, 21);
+            this.menuStrip1.Location = new System.Drawing.Point(12, 31);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1164, 37);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 3, 0, 3);
+            this.menuStrip1.Size = new System.Drawing.Size(1746, 39);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1615,10 +1605,11 @@ namespace TeamDigitalJB
             this.verifyServicesRunningToolStripMenuItem,
             this.sMOKETESTINGDEPLOYMENTSToolStripMenuItem,
             this.smokeTestingMigrationsToolStripMenuItem,
-            this.healthCheckToolStripMenuItem});
+            this.healthCheckToolStripMenuItem,
+            this.runSoundGeneratorToolStripMenuItem});
             this.scriptsToolStripMenuItem.Image = global::TeamDigitalJB.Properties.Resources.script;
             this.scriptsToolStripMenuItem.Name = "scriptsToolStripMenuItem";
-            this.scriptsToolStripMenuItem.Size = new System.Drawing.Size(74, 33);
+            this.scriptsToolStripMenuItem.Size = new System.Drawing.Size(101, 33);
             this.scriptsToolStripMenuItem.Text = "Scripts";
             this.scriptsToolStripMenuItem.Click += new System.EventHandler(this.scriptsToolStripMenuItem_Click);
             // 
@@ -1628,33 +1619,33 @@ namespace TeamDigitalJB
             this.loadScriptToolStripMenuItem});
             this.loadCustomScriptToolStripMenuItem.Image = global::TeamDigitalJB.Properties.Resources.script;
             this.loadCustomScriptToolStripMenuItem.Name = "loadCustomScriptToolStripMenuItem";
-            this.loadCustomScriptToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.loadCustomScriptToolStripMenuItem.Size = new System.Drawing.Size(340, 34);
             this.loadCustomScriptToolStripMenuItem.Text = "Load Custom Script";
             // 
             // loadScriptToolStripMenuItem
             // 
             this.loadScriptToolStripMenuItem.Name = "loadScriptToolStripMenuItem";
-            this.loadScriptToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.loadScriptToolStripMenuItem.Size = new System.Drawing.Size(203, 34);
             this.loadScriptToolStripMenuItem.Text = "Load Script";
             this.loadScriptToolStripMenuItem.Click += new System.EventHandler(this.loadScriptToolStripMenuItem_Click);
             // 
             // checkUptimeToolStripMenuItem
             // 
             this.checkUptimeToolStripMenuItem.Name = "checkUptimeToolStripMenuItem";
-            this.checkUptimeToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.checkUptimeToolStripMenuItem.Size = new System.Drawing.Size(340, 34);
             this.checkUptimeToolStripMenuItem.Text = "Check Uptime";
             this.checkUptimeToolStripMenuItem.Click += new System.EventHandler(this.checkUptimeToolStripMenuItem_Click);
             // 
             // checkLastUpdateToolStripMenuItem
             // 
             this.checkLastUpdateToolStripMenuItem.Name = "checkLastUpdateToolStripMenuItem";
-            this.checkLastUpdateToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.checkLastUpdateToolStripMenuItem.Size = new System.Drawing.Size(340, 34);
             this.checkLastUpdateToolStripMenuItem.Text = "Check Last Update";
             // 
             // checkRebootRequiredToolStripMenuItem
             // 
             this.checkRebootRequiredToolStripMenuItem.Name = "checkRebootRequiredToolStripMenuItem";
-            this.checkRebootRequiredToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.checkRebootRequiredToolStripMenuItem.Size = new System.Drawing.Size(340, 34);
             this.checkRebootRequiredToolStripMenuItem.Text = "Check Reboot Required";
             this.checkRebootRequiredToolStripMenuItem.Click += new System.EventHandler(this.checkRebootRequiredToolStripMenuItem_Click);
             // 
@@ -1666,7 +1657,7 @@ namespace TeamDigitalJB
             this.dATA01ToolStripMenuItem,
             this.dATA02ToolStripMenuItem});
             this.openWebConfigToolStripMenuItem.Name = "openWebConfigToolStripMenuItem";
-            this.openWebConfigToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.openWebConfigToolStripMenuItem.Size = new System.Drawing.Size(340, 34);
             this.openWebConfigToolStripMenuItem.Text = "Open Web.Config";
             // 
             // aUTH01ToolStripMenuItem
@@ -1675,21 +1666,21 @@ namespace TeamDigitalJB
             this.oPENINNOTEPADToolStripMenuItem,
             this.oPENINOUTPUTToolStripMenuItem});
             this.aUTH01ToolStripMenuItem.Name = "aUTH01ToolStripMenuItem";
-            this.aUTH01ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.aUTH01ToolStripMenuItem.Size = new System.Drawing.Size(180, 34);
             this.aUTH01ToolStripMenuItem.Text = "AUTH01";
             this.aUTH01ToolStripMenuItem.Click += new System.EventHandler(this.aUTH01ToolStripMenuItem_Click);
             // 
             // oPENINNOTEPADToolStripMenuItem
             // 
             this.oPENINNOTEPADToolStripMenuItem.Name = "oPENINNOTEPADToolStripMenuItem";
-            this.oPENINNOTEPADToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.oPENINNOTEPADToolStripMenuItem.Size = new System.Drawing.Size(266, 34);
             this.oPENINNOTEPADToolStripMenuItem.Text = "OPEN IN NOTEPAD";
             this.oPENINNOTEPADToolStripMenuItem.Click += new System.EventHandler(this.oPENINNOTEPADToolStripMenuItem_Click);
             // 
             // oPENINOUTPUTToolStripMenuItem
             // 
             this.oPENINOUTPUTToolStripMenuItem.Name = "oPENINOUTPUTToolStripMenuItem";
-            this.oPENINOUTPUTToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.oPENINOUTPUTToolStripMenuItem.Size = new System.Drawing.Size(266, 34);
             this.oPENINOUTPUTToolStripMenuItem.Text = "OPEN IN OUTPUT";
             this.oPENINOUTPUTToolStripMenuItem.Click += new System.EventHandler(this.oPENINOUTPUTToolStripMenuItem_Click);
             // 
@@ -1698,33 +1689,33 @@ namespace TeamDigitalJB
             this.aUTH02ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.oPENINNOTEPADToolStripMenuItem1});
             this.aUTH02ToolStripMenuItem.Name = "aUTH02ToolStripMenuItem";
-            this.aUTH02ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.aUTH02ToolStripMenuItem.Size = new System.Drawing.Size(180, 34);
             this.aUTH02ToolStripMenuItem.Text = "AUTH02";
             this.aUTH02ToolStripMenuItem.Click += new System.EventHandler(this.aUTH02ToolStripMenuItem_Click);
             // 
             // oPENINNOTEPADToolStripMenuItem1
             // 
             this.oPENINNOTEPADToolStripMenuItem1.Name = "oPENINNOTEPADToolStripMenuItem1";
-            this.oPENINNOTEPADToolStripMenuItem1.Size = new System.Drawing.Size(175, 22);
+            this.oPENINNOTEPADToolStripMenuItem1.Size = new System.Drawing.Size(266, 34);
             this.oPENINNOTEPADToolStripMenuItem1.Text = "OPEN IN NOTEPAD";
             this.oPENINNOTEPADToolStripMenuItem1.Click += new System.EventHandler(this.oPENINNOTEPADToolStripMenuItem1_Click);
             // 
             // dATA01ToolStripMenuItem
             // 
             this.dATA01ToolStripMenuItem.Name = "dATA01ToolStripMenuItem";
-            this.dATA01ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.dATA01ToolStripMenuItem.Size = new System.Drawing.Size(180, 34);
             this.dATA01ToolStripMenuItem.Text = "DATA01";
             // 
             // dATA02ToolStripMenuItem
             // 
             this.dATA02ToolStripMenuItem.Name = "dATA02ToolStripMenuItem";
-            this.dATA02ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.dATA02ToolStripMenuItem.Size = new System.Drawing.Size(180, 34);
             this.dATA02ToolStripMenuItem.Text = "DATA02";
             // 
             // restartAppPoolToolStripMenuItem
             // 
             this.restartAppPoolToolStripMenuItem.Name = "restartAppPoolToolStripMenuItem";
-            this.restartAppPoolToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.restartAppPoolToolStripMenuItem.Size = new System.Drawing.Size(340, 34);
             this.restartAppPoolToolStripMenuItem.Text = "Restart App Pool";
             // 
             // checkWebServiceToolStripMenuItem
@@ -1735,32 +1726,32 @@ namespace TeamDigitalJB
             this.subscriptionServiceToolStripMenuItem,
             this.relayServiceToolStripMenuItem});
             this.checkWebServiceToolStripMenuItem.Name = "checkWebServiceToolStripMenuItem";
-            this.checkWebServiceToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.checkWebServiceToolStripMenuItem.Size = new System.Drawing.Size(340, 34);
             this.checkWebServiceToolStripMenuItem.Text = "Check WebService";
             // 
             // authServiceToolStripMenuItem
             // 
             this.authServiceToolStripMenuItem.Name = "authServiceToolStripMenuItem";
-            this.authServiceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.authServiceToolStripMenuItem.Size = new System.Drawing.Size(273, 34);
             this.authServiceToolStripMenuItem.Text = "Auth Service";
             this.authServiceToolStripMenuItem.Click += new System.EventHandler(this.authServiceToolStripMenuItem_Click);
             // 
             // dataServiceToolStripMenuItem
             // 
             this.dataServiceToolStripMenuItem.Name = "dataServiceToolStripMenuItem";
-            this.dataServiceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dataServiceToolStripMenuItem.Size = new System.Drawing.Size(273, 34);
             this.dataServiceToolStripMenuItem.Text = "Data Service";
             // 
             // subscriptionServiceToolStripMenuItem
             // 
             this.subscriptionServiceToolStripMenuItem.Name = "subscriptionServiceToolStripMenuItem";
-            this.subscriptionServiceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.subscriptionServiceToolStripMenuItem.Size = new System.Drawing.Size(273, 34);
             this.subscriptionServiceToolStripMenuItem.Text = "Subscription Service";
             // 
             // relayServiceToolStripMenuItem
             // 
             this.relayServiceToolStripMenuItem.Name = "relayServiceToolStripMenuItem";
-            this.relayServiceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.relayServiceToolStripMenuItem.Size = new System.Drawing.Size(273, 34);
             this.relayServiceToolStripMenuItem.Text = "Relay Service";
             // 
             // restartIISToolStripMenuItem
@@ -1769,32 +1760,32 @@ namespace TeamDigitalJB
             this.aPPPOOLToolStripMenuItem,
             this.iISSERVICEToolStripMenuItem});
             this.restartIISToolStripMenuItem.Name = "restartIISToolStripMenuItem";
-            this.restartIISToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.restartIISToolStripMenuItem.Size = new System.Drawing.Size(340, 34);
             this.restartIISToolStripMenuItem.Text = "Restart IIS";
             // 
             // aPPPOOLToolStripMenuItem
             // 
             this.aPPPOOLToolStripMenuItem.Name = "aPPPOOLToolStripMenuItem";
-            this.aPPPOOLToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.aPPPOOLToolStripMenuItem.Size = new System.Drawing.Size(197, 34);
             this.aPPPOOLToolStripMenuItem.Text = "APP POOL";
             // 
             // iISSERVICEToolStripMenuItem
             // 
             this.iISSERVICEToolStripMenuItem.Name = "iISSERVICEToolStripMenuItem";
-            this.iISSERVICEToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.iISSERVICEToolStripMenuItem.Size = new System.Drawing.Size(197, 34);
             this.iISSERVICEToolStripMenuItem.Text = "IIS";
             // 
             // restartServicesToolStripMenuItem
             // 
             this.restartServicesToolStripMenuItem.Image = global::TeamDigitalJB.Properties.Resources.service;
             this.restartServicesToolStripMenuItem.Name = "restartServicesToolStripMenuItem";
-            this.restartServicesToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.restartServicesToolStripMenuItem.Size = new System.Drawing.Size(340, 34);
             this.restartServicesToolStripMenuItem.Text = "Restart Services";
             // 
             // verifyServicesRunningToolStripMenuItem
             // 
             this.verifyServicesRunningToolStripMenuItem.Name = "verifyServicesRunningToolStripMenuItem";
-            this.verifyServicesRunningToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.verifyServicesRunningToolStripMenuItem.Size = new System.Drawing.Size(340, 34);
             // 
             // sMOKETESTINGDEPLOYMENTSToolStripMenuItem
             // 
@@ -1808,7 +1799,7 @@ namespace TeamDigitalJB
             this.cHECKBACKUPDATEToolStripMenuItem,
             this.verifySQLRestoreDateToolStripMenuItem});
             this.sMOKETESTINGDEPLOYMENTSToolStripMenuItem.Name = "sMOKETESTINGDEPLOYMENTSToolStripMenuItem";
-            this.sMOKETESTINGDEPLOYMENTSToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.sMOKETESTINGDEPLOYMENTSToolStripMenuItem.Size = new System.Drawing.Size(340, 34);
             this.sMOKETESTINGDEPLOYMENTSToolStripMenuItem.Text = "Smoke Testing Deployments";
             // 
             // runALLVerificationChecksToolStripMenuItem
@@ -1817,13 +1808,13 @@ namespace TeamDigitalJB
             this.oUTPUTTOCOMMANDSHELLToolStripMenuItem,
             this.oUTPUTTOFILEToolStripMenuItem});
             this.runALLVerificationChecksToolStripMenuItem.Name = "runALLVerificationChecksToolStripMenuItem";
-            this.runALLVerificationChecksToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.runALLVerificationChecksToolStripMenuItem.Size = new System.Drawing.Size(335, 34);
             this.runALLVerificationChecksToolStripMenuItem.Text = "Run ALL Verification Checks";
             // 
             // oUTPUTTOCOMMANDSHELLToolStripMenuItem
             // 
             this.oUTPUTTOCOMMANDSHELLToolStripMenuItem.Name = "oUTPUTTOCOMMANDSHELLToolStripMenuItem";
-            this.oUTPUTTOCOMMANDSHELLToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.oUTPUTTOCOMMANDSHELLToolStripMenuItem.Size = new System.Drawing.Size(360, 34);
             this.oUTPUTTOCOMMANDSHELLToolStripMenuItem.Text = "OUTPUT TO COMMAND SHELL";
             // 
             // oUTPUTTOFILEToolStripMenuItem
@@ -1832,62 +1823,62 @@ namespace TeamDigitalJB
             this.cSVToolStripMenuItem,
             this.tXTToolStripMenuItem});
             this.oUTPUTTOFILEToolStripMenuItem.Name = "oUTPUTTOFILEToolStripMenuItem";
-            this.oUTPUTTOFILEToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.oUTPUTTOFILEToolStripMenuItem.Size = new System.Drawing.Size(360, 34);
             this.oUTPUTTOFILEToolStripMenuItem.Text = "OUTPUT TO FILE";
             // 
             // cSVToolStripMenuItem
             // 
             this.cSVToolStripMenuItem.Name = "cSVToolStripMenuItem";
-            this.cSVToolStripMenuItem.Size = new System.Drawing.Size(95, 22);
+            this.cSVToolStripMenuItem.Size = new System.Drawing.Size(146, 34);
             this.cSVToolStripMenuItem.Text = "CSV";
             // 
             // tXTToolStripMenuItem
             // 
             this.tXTToolStripMenuItem.Name = "tXTToolStripMenuItem";
-            this.tXTToolStripMenuItem.Size = new System.Drawing.Size(95, 22);
+            this.tXTToolStripMenuItem.Size = new System.Drawing.Size(146, 34);
             this.tXTToolStripMenuItem.Text = "TXT";
             // 
             // cHECKSERVICES7010AUTHToolStripMenuItem
             // 
             this.cHECKSERVICES7010AUTHToolStripMenuItem.Name = "cHECKSERVICES7010AUTHToolStripMenuItem";
-            this.cHECKSERVICES7010AUTHToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.cHECKSERVICES7010AUTHToolStripMenuItem.Size = new System.Drawing.Size(335, 34);
             this.cHECKSERVICES7010AUTHToolStripMenuItem.Text = "Verify SERVICES 7010 AUTH";
             // 
             // cHECKSERVICES7011DATAToolStripMenuItem
             // 
             this.cHECKSERVICES7011DATAToolStripMenuItem.Name = "cHECKSERVICES7011DATAToolStripMenuItem";
-            this.cHECKSERVICES7011DATAToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.cHECKSERVICES7011DATAToolStripMenuItem.Size = new System.Drawing.Size(335, 34);
             this.cHECKSERVICES7011DATAToolStripMenuItem.Text = "Verify SERVICES 7011 DATA";
             // 
             // cHECKSQLLOGINToolStripMenuItem
             // 
             this.cHECKSQLLOGINToolStripMenuItem.Name = "cHECKSQLLOGINToolStripMenuItem";
-            this.cHECKSQLLOGINToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.cHECKSQLLOGINToolStripMenuItem.Size = new System.Drawing.Size(335, 34);
             this.cHECKSQLLOGINToolStripMenuItem.Text = "Verify SQL LOGIN";
             // 
             // cHECKSQLSTATEMENTToolStripMenuItem
             // 
             this.cHECKSQLSTATEMENTToolStripMenuItem.Name = "cHECKSQLSTATEMENTToolStripMenuItem";
-            this.cHECKSQLSTATEMENTToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.cHECKSQLSTATEMENTToolStripMenuItem.Size = new System.Drawing.Size(335, 34);
             this.cHECKSQLSTATEMENTToolStripMenuItem.Text = "Verify SQL STATEMENT";
             this.cHECKSQLSTATEMENTToolStripMenuItem.Click += new System.EventHandler(this.cHECKSQLSTATEMENTToolStripMenuItem_Click);
             // 
             // cHECKSQLQUERYToolStripMenuItem
             // 
             this.cHECKSQLQUERYToolStripMenuItem.Name = "cHECKSQLQUERYToolStripMenuItem";
-            this.cHECKSQLQUERYToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.cHECKSQLQUERYToolStripMenuItem.Size = new System.Drawing.Size(335, 34);
             this.cHECKSQLQUERYToolStripMenuItem.Text = "Verify SQL QUERY";
             // 
             // cHECKBACKUPDATEToolStripMenuItem
             // 
             this.cHECKBACKUPDATEToolStripMenuItem.Name = "cHECKBACKUPDATEToolStripMenuItem";
-            this.cHECKBACKUPDATEToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.cHECKBACKUPDATEToolStripMenuItem.Size = new System.Drawing.Size(335, 34);
             this.cHECKBACKUPDATEToolStripMenuItem.Text = "Verify SQL BACKUP DATE";
             // 
             // verifySQLRestoreDateToolStripMenuItem
             // 
             this.verifySQLRestoreDateToolStripMenuItem.Name = "verifySQLRestoreDateToolStripMenuItem";
-            this.verifySQLRestoreDateToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.verifySQLRestoreDateToolStripMenuItem.Size = new System.Drawing.Size(335, 34);
             this.verifySQLRestoreDateToolStripMenuItem.Text = "Verify SQL Restore Date";
             // 
             // smokeTestingMigrationsToolStripMenuItem
@@ -1905,7 +1896,7 @@ namespace TeamDigitalJB
             this.verifyBinaryVersionToolStripMenuItem,
             this.verifyFileDateToolStripMenuItem});
             this.smokeTestingMigrationsToolStripMenuItem.Name = "smokeTestingMigrationsToolStripMenuItem";
-            this.smokeTestingMigrationsToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.smokeTestingMigrationsToolStripMenuItem.Size = new System.Drawing.Size(340, 34);
             this.smokeTestingMigrationsToolStripMenuItem.Text = "Smoke Testing Migrations";
             // 
             // runAllVerificationChecksToolStripMenuItem1
@@ -1914,13 +1905,13 @@ namespace TeamDigitalJB
             this.outputToCommandShellToolStripMenuItem1,
             this.outputToFileToolStripMenuItem1});
             this.runAllVerificationChecksToolStripMenuItem1.Name = "runAllVerificationChecksToolStripMenuItem1";
-            this.runAllVerificationChecksToolStripMenuItem1.Size = new System.Drawing.Size(289, 22);
+            this.runAllVerificationChecksToolStripMenuItem1.Size = new System.Drawing.Size(436, 34);
             this.runAllVerificationChecksToolStripMenuItem1.Text = "Run All Verification Checks";
             // 
             // outputToCommandShellToolStripMenuItem1
             // 
             this.outputToCommandShellToolStripMenuItem1.Name = "outputToCommandShellToolStripMenuItem1";
-            this.outputToCommandShellToolStripMenuItem1.Size = new System.Drawing.Size(214, 22);
+            this.outputToCommandShellToolStripMenuItem1.Size = new System.Drawing.Size(324, 34);
             this.outputToCommandShellToolStripMenuItem1.Text = "Output to Command Shell";
             // 
             // outputToFileToolStripMenuItem1
@@ -1929,67 +1920,67 @@ namespace TeamDigitalJB
             this.convertToCSVToolStripMenuItem,
             this.convertToTXTToolStripMenuItem});
             this.outputToFileToolStripMenuItem1.Name = "outputToFileToolStripMenuItem1";
-            this.outputToFileToolStripMenuItem1.Size = new System.Drawing.Size(214, 22);
+            this.outputToFileToolStripMenuItem1.Size = new System.Drawing.Size(324, 34);
             this.outputToFileToolStripMenuItem1.Text = "Output to File";
             // 
             // convertToCSVToolStripMenuItem
             // 
             this.convertToCSVToolStripMenuItem.Name = "convertToCSVToolStripMenuItem";
-            this.convertToCSVToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.convertToCSVToolStripMenuItem.Size = new System.Drawing.Size(235, 34);
             this.convertToCSVToolStripMenuItem.Text = "Convert to CSV";
             // 
             // convertToTXTToolStripMenuItem
             // 
             this.convertToTXTToolStripMenuItem.Name = "convertToTXTToolStripMenuItem";
-            this.convertToTXTToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.convertToTXTToolStripMenuItem.Size = new System.Drawing.Size(235, 34);
             this.convertToTXTToolStripMenuItem.Text = "Convert to TXT";
             // 
             // checkFileSizeToolStripMenuItem
             // 
             this.checkFileSizeToolStripMenuItem.Name = "checkFileSizeToolStripMenuItem";
-            this.checkFileSizeToolStripMenuItem.Size = new System.Drawing.Size(289, 22);
+            this.checkFileSizeToolStripMenuItem.Size = new System.Drawing.Size(436, 34);
             this.checkFileSizeToolStripMenuItem.Text = "1. Check File Size";
             // 
             // checkFolderReadWritePermissionsToolStripMenuItem
             // 
             this.checkFolderReadWritePermissionsToolStripMenuItem.Name = "checkFolderReadWritePermissionsToolStripMenuItem";
-            this.checkFolderReadWritePermissionsToolStripMenuItem.Size = new System.Drawing.Size(289, 22);
+            this.checkFolderReadWritePermissionsToolStripMenuItem.Size = new System.Drawing.Size(436, 34);
             this.checkFolderReadWritePermissionsToolStripMenuItem.Text = "2. Check Folder Read / Write Permissions";
             // 
             // checkDBBackupSuccessfullToolStripMenuItem
             // 
             this.checkDBBackupSuccessfullToolStripMenuItem.Name = "checkDBBackupSuccessfullToolStripMenuItem";
-            this.checkDBBackupSuccessfullToolStripMenuItem.Size = new System.Drawing.Size(289, 22);
+            this.checkDBBackupSuccessfullToolStripMenuItem.Size = new System.Drawing.Size(436, 34);
             this.checkDBBackupSuccessfullToolStripMenuItem.Text = "3. Check DB Backup Successful";
             // 
             // checkServerUptimeToolStripMenuItem
             // 
             this.checkServerUptimeToolStripMenuItem.Name = "checkServerUptimeToolStripMenuItem";
-            this.checkServerUptimeToolStripMenuItem.Size = new System.Drawing.Size(289, 22);
+            this.checkServerUptimeToolStripMenuItem.Size = new System.Drawing.Size(436, 34);
             this.checkServerUptimeToolStripMenuItem.Text = "4. Check Server Uptime";
             // 
             // verifyIfRebootIsRequiredToolStripMenuItem
             // 
             this.verifyIfRebootIsRequiredToolStripMenuItem.Name = "verifyIfRebootIsRequiredToolStripMenuItem";
-            this.verifyIfRebootIsRequiredToolStripMenuItem.Size = new System.Drawing.Size(289, 22);
+            this.verifyIfRebootIsRequiredToolStripMenuItem.Size = new System.Drawing.Size(436, 34);
             this.verifyIfRebootIsRequiredToolStripMenuItem.Text = "5. Verify If Reboot is Required";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(289, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(436, 34);
             this.toolStripMenuItem1.Text = "5A. Verify Data Service Online: 7011";
             // 
             // verifyServiceOnlineToolStripMenuItem
             // 
             this.verifyServiceOnlineToolStripMenuItem.Name = "verifyServiceOnlineToolStripMenuItem";
-            this.verifyServiceOnlineToolStripMenuItem.Size = new System.Drawing.Size(289, 22);
+            this.verifyServiceOnlineToolStripMenuItem.Size = new System.Drawing.Size(436, 34);
             this.verifyServiceOnlineToolStripMenuItem.Text = "5B. Verify Auth Service Online 7010";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(289, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(436, 34);
             this.toolStripMenuItem2.Text = "6. Verify Read / Write Access to DB";
             // 
             // verifyBinaryVersionToolStripMenuItem
@@ -1999,31 +1990,31 @@ namespace TeamDigitalJB
             this.aUTHToolStripMenuItem,
             this.rELAYToolStripMenuItem});
             this.verifyBinaryVersionToolStripMenuItem.Name = "verifyBinaryVersionToolStripMenuItem";
-            this.verifyBinaryVersionToolStripMenuItem.Size = new System.Drawing.Size(289, 22);
+            this.verifyBinaryVersionToolStripMenuItem.Size = new System.Drawing.Size(436, 34);
             this.verifyBinaryVersionToolStripMenuItem.Text = "7. Verify Binary Version ";
             // 
             // dATAToolStripMenuItem
             // 
             this.dATAToolStripMenuItem.Name = "dATAToolStripMenuItem";
-            this.dATAToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.dATAToolStripMenuItem.Size = new System.Drawing.Size(164, 34);
             this.dATAToolStripMenuItem.Text = "DATA";
             // 
             // aUTHToolStripMenuItem
             // 
             this.aUTHToolStripMenuItem.Name = "aUTHToolStripMenuItem";
-            this.aUTHToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aUTHToolStripMenuItem.Size = new System.Drawing.Size(164, 34);
             this.aUTHToolStripMenuItem.Text = "AUTH";
             // 
             // rELAYToolStripMenuItem
             // 
             this.rELAYToolStripMenuItem.Name = "rELAYToolStripMenuItem";
-            this.rELAYToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.rELAYToolStripMenuItem.Size = new System.Drawing.Size(164, 34);
             this.rELAYToolStripMenuItem.Text = "RELAY";
             // 
             // verifyFileDateToolStripMenuItem
             // 
             this.verifyFileDateToolStripMenuItem.Name = "verifyFileDateToolStripMenuItem";
-            this.verifyFileDateToolStripMenuItem.Size = new System.Drawing.Size(289, 22);
+            this.verifyFileDateToolStripMenuItem.Size = new System.Drawing.Size(436, 34);
             this.verifyFileDateToolStripMenuItem.Text = "8. Verify File Date";
             // 
             // healthCheckToolStripMenuItem
@@ -2031,13 +2022,13 @@ namespace TeamDigitalJB
             this.healthCheckToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.runFullHealthCheckToolStripMenuItem});
             this.healthCheckToolStripMenuItem.Name = "healthCheckToolStripMenuItem";
-            this.healthCheckToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.healthCheckToolStripMenuItem.Size = new System.Drawing.Size(340, 34);
             this.healthCheckToolStripMenuItem.Text = "Health Check";
             // 
             // runFullHealthCheckToolStripMenuItem
             // 
             this.runFullHealthCheckToolStripMenuItem.Name = "runFullHealthCheckToolStripMenuItem";
-            this.runFullHealthCheckToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.runFullHealthCheckToolStripMenuItem.Size = new System.Drawing.Size(285, 34);
             this.runFullHealthCheckToolStripMenuItem.Text = "Run Full Health Check";
             this.runFullHealthCheckToolStripMenuItem.Click += new System.EventHandler(this.runFullHealthCheckToolStripMenuItem_Click);
             // 
@@ -2050,32 +2041,32 @@ namespace TeamDigitalJB
             this.createVMToolStripMenuItem});
             this.azureServicesToolStripMenuItem.Image = global::TeamDigitalJB.Properties.Resources.azure;
             this.azureServicesToolStripMenuItem.Name = "azureServicesToolStripMenuItem";
-            this.azureServicesToolStripMenuItem.Size = new System.Drawing.Size(114, 33);
+            this.azureServicesToolStripMenuItem.Size = new System.Drawing.Size(161, 33);
             this.azureServicesToolStripMenuItem.Text = "Azure Services";
             // 
             // reDeployServerToolStripMenuItem
             // 
             this.reDeployServerToolStripMenuItem.Name = "reDeployServerToolStripMenuItem";
-            this.reDeployServerToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.reDeployServerToolStripMenuItem.Size = new System.Drawing.Size(353, 34);
             this.reDeployServerToolStripMenuItem.Text = "Re-Deploy Server";
             // 
             // nSGsToolStripMenuItem
             // 
             this.nSGsToolStripMenuItem.Image = global::TeamDigitalJB.Properties.Resources.nsg;
             this.nSGsToolStripMenuItem.Name = "nSGsToolStripMenuItem";
-            this.nSGsToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.nSGsToolStripMenuItem.Size = new System.Drawing.Size(353, 34);
             this.nSGsToolStripMenuItem.Text = "NSGs";
             // 
             // resetPasswordMasterAdminToolStripMenuItem
             // 
             this.resetPasswordMasterAdminToolStripMenuItem.Name = "resetPasswordMasterAdminToolStripMenuItem";
-            this.resetPasswordMasterAdminToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.resetPasswordMasterAdminToolStripMenuItem.Size = new System.Drawing.Size(353, 34);
             this.resetPasswordMasterAdminToolStripMenuItem.Text = "Reset Password master Admin";
             // 
             // createVMToolStripMenuItem
             // 
             this.createVMToolStripMenuItem.Name = "createVMToolStripMenuItem";
-            this.createVMToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.createVMToolStripMenuItem.Size = new System.Drawing.Size(353, 34);
             this.createVMToolStripMenuItem.Text = "Create VM";
             // 
             // dashBoardsToolStripMenuItem
@@ -2088,37 +2079,37 @@ namespace TeamDigitalJB
             this.outagesToolStripMenuItem});
             this.dashBoardsToolStripMenuItem.Image = global::TeamDigitalJB.Properties.Resources.dashboards;
             this.dashBoardsToolStripMenuItem.Name = "dashBoardsToolStripMenuItem";
-            this.dashBoardsToolStripMenuItem.Size = new System.Drawing.Size(104, 33);
+            this.dashBoardsToolStripMenuItem.Size = new System.Drawing.Size(148, 33);
             this.dashBoardsToolStripMenuItem.Text = "Dash Boards";
             // 
             // cPUUtilizationReportsToolStripMenuItem
             // 
             this.cPUUtilizationReportsToolStripMenuItem.Name = "cPUUtilizationReportsToolStripMenuItem";
-            this.cPUUtilizationReportsToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.cPUUtilizationReportsToolStripMenuItem.Size = new System.Drawing.Size(359, 34);
             this.cPUUtilizationReportsToolStripMenuItem.Text = "CPU Utilization Reports";
             // 
             // ramUtilizationReportsToolStripMenuItem
             // 
             this.ramUtilizationReportsToolStripMenuItem.Name = "ramUtilizationReportsToolStripMenuItem";
-            this.ramUtilizationReportsToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.ramUtilizationReportsToolStripMenuItem.Size = new System.Drawing.Size(359, 34);
             this.ramUtilizationReportsToolStripMenuItem.Text = "Ram Utilization Reports";
             // 
             // allResourceUtilizationReportsToolStripMenuItem
             // 
             this.allResourceUtilizationReportsToolStripMenuItem.Name = "allResourceUtilizationReportsToolStripMenuItem";
-            this.allResourceUtilizationReportsToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.allResourceUtilizationReportsToolStripMenuItem.Size = new System.Drawing.Size(359, 34);
             this.allResourceUtilizationReportsToolStripMenuItem.Text = "All Resource Utilization Reports";
             // 
             // downtimeToolStripMenuItem
             // 
             this.downtimeToolStripMenuItem.Name = "downtimeToolStripMenuItem";
-            this.downtimeToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.downtimeToolStripMenuItem.Size = new System.Drawing.Size(359, 34);
             this.downtimeToolStripMenuItem.Text = "Downtime";
             // 
             // outagesToolStripMenuItem
             // 
             this.outagesToolStripMenuItem.Name = "outagesToolStripMenuItem";
-            this.outagesToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.outagesToolStripMenuItem.Size = new System.Drawing.Size(359, 34);
             this.outagesToolStripMenuItem.Text = "Outages";
             // 
             // rDPToolStripMenuItem
@@ -2134,14 +2125,14 @@ namespace TeamDigitalJB
             this.aZSCTDWEBD042ToolStripMenuItem1});
             this.rDPToolStripMenuItem.Image = global::TeamDigitalJB.Properties.Resources.rdp;
             this.rDPToolStripMenuItem.Name = "rDPToolStripMenuItem";
-            this.rDPToolStripMenuItem.Size = new System.Drawing.Size(61, 33);
+            this.rDPToolStripMenuItem.Size = new System.Drawing.Size(82, 33);
             this.rDPToolStripMenuItem.Text = "RDP";
             // 
             // aZSCTDWEBD01ToolStripMenuItem
             // 
             this.aZSCTDWEBD01ToolStripMenuItem.Image = global::TeamDigitalJB.Properties.Resources.rdp;
             this.aZSCTDWEBD01ToolStripMenuItem.Name = "aZSCTDWEBD01ToolStripMenuItem";
-            this.aZSCTDWEBD01ToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
+            this.aZSCTDWEBD01ToolStripMenuItem.Size = new System.Drawing.Size(376, 34);
             this.aZSCTDWEBD01ToolStripMenuItem.Text = "AZSC-TDWEB-D01 - AUTH01";
             this.aZSCTDWEBD01ToolStripMenuItem.Click += new System.EventHandler(this.aZSCTDWEBD01ToolStripMenuItem_Click);
             // 
@@ -2149,7 +2140,7 @@ namespace TeamDigitalJB
             // 
             this.aZSCTDWEBD02ToolStripMenuItem1.Image = global::TeamDigitalJB.Properties.Resources.rdp;
             this.aZSCTDWEBD02ToolStripMenuItem1.Name = "aZSCTDWEBD02ToolStripMenuItem1";
-            this.aZSCTDWEBD02ToolStripMenuItem1.Size = new System.Drawing.Size(247, 22);
+            this.aZSCTDWEBD02ToolStripMenuItem1.Size = new System.Drawing.Size(376, 34);
             this.aZSCTDWEBD02ToolStripMenuItem1.Text = "AZSC-TDWEB-D02 - AUTH02";
             this.aZSCTDWEBD02ToolStripMenuItem1.Click += new System.EventHandler(this.aZSCTDWEBD02ToolStripMenuItem1_Click);
             // 
@@ -2157,7 +2148,7 @@ namespace TeamDigitalJB
             // 
             this.aZSCTDWEBD03ToolStripMenuItem.Image = global::TeamDigitalJB.Properties.Resources.rdp;
             this.aZSCTDWEBD03ToolStripMenuItem.Name = "aZSCTDWEBD03ToolStripMenuItem";
-            this.aZSCTDWEBD03ToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
+            this.aZSCTDWEBD03ToolStripMenuItem.Size = new System.Drawing.Size(376, 34);
             this.aZSCTDWEBD03ToolStripMenuItem.Text = "AZSC-TDWEB-D03 - TABLEAU 03";
             this.aZSCTDWEBD03ToolStripMenuItem.Click += new System.EventHandler(this.aZSCTDWEBD03ToolStripMenuItem_Click);
             // 
@@ -2165,7 +2156,7 @@ namespace TeamDigitalJB
             // 
             this.aZSCTDSQLD01ToolStripMenuItem1.Image = global::TeamDigitalJB.Properties.Resources.rdp;
             this.aZSCTDSQLD01ToolStripMenuItem1.Name = "aZSCTDSQLD01ToolStripMenuItem1";
-            this.aZSCTDSQLD01ToolStripMenuItem1.Size = new System.Drawing.Size(247, 22);
+            this.aZSCTDSQLD01ToolStripMenuItem1.Size = new System.Drawing.Size(376, 34);
             this.aZSCTDSQLD01ToolStripMenuItem1.Text = "AZSC-TDSQL-D01";
             this.aZSCTDSQLD01ToolStripMenuItem1.Click += new System.EventHandler(this.aZSCTDSQLD01ToolStripMenuItem1_Click);
             // 
@@ -2173,7 +2164,7 @@ namespace TeamDigitalJB
             // 
             this.aZSCTDSQLD02ToolStripMenuItem1.Image = global::TeamDigitalJB.Properties.Resources.rdp;
             this.aZSCTDSQLD02ToolStripMenuItem1.Name = "aZSCTDSQLD02ToolStripMenuItem1";
-            this.aZSCTDSQLD02ToolStripMenuItem1.Size = new System.Drawing.Size(247, 22);
+            this.aZSCTDSQLD02ToolStripMenuItem1.Size = new System.Drawing.Size(376, 34);
             this.aZSCTDSQLD02ToolStripMenuItem1.Text = "AZSC-TDSQL-D02";
             this.aZSCTDSQLD02ToolStripMenuItem1.Click += new System.EventHandler(this.aZSCTDSQLD02ToolStripMenuItem1_Click);
             // 
@@ -2181,7 +2172,7 @@ namespace TeamDigitalJB
             // 
             this.aZSCTDADD01ToolStripMenuItem1.Image = global::TeamDigitalJB.Properties.Resources.rdp;
             this.aZSCTDADD01ToolStripMenuItem1.Name = "aZSCTDADD01ToolStripMenuItem1";
-            this.aZSCTDADD01ToolStripMenuItem1.Size = new System.Drawing.Size(247, 22);
+            this.aZSCTDADD01ToolStripMenuItem1.Size = new System.Drawing.Size(376, 34);
             this.aZSCTDADD01ToolStripMenuItem1.Text = "AZSC-TDAD-D01";
             this.aZSCTDADD01ToolStripMenuItem1.Click += new System.EventHandler(this.aZSCTDADD01ToolStripMenuItem1_Click);
             // 
@@ -2189,7 +2180,7 @@ namespace TeamDigitalJB
             // 
             this.aZSCTDWEBD041ToolStripMenuItem1.Image = global::TeamDigitalJB.Properties.Resources.rdp;
             this.aZSCTDWEBD041ToolStripMenuItem1.Name = "aZSCTDWEBD041ToolStripMenuItem1";
-            this.aZSCTDWEBD041ToolStripMenuItem1.Size = new System.Drawing.Size(247, 22);
+            this.aZSCTDWEBD041ToolStripMenuItem1.Size = new System.Drawing.Size(376, 34);
             this.aZSCTDWEBD041ToolStripMenuItem1.Text = "AZSC-TDWEB-D041 - DATA01";
             this.aZSCTDWEBD041ToolStripMenuItem1.Click += new System.EventHandler(this.aZSCTDWEBD041ToolStripMenuItem1_Click);
             // 
@@ -2197,7 +2188,7 @@ namespace TeamDigitalJB
             // 
             this.aZSCTDWEBD042ToolStripMenuItem1.Image = global::TeamDigitalJB.Properties.Resources.rdp;
             this.aZSCTDWEBD042ToolStripMenuItem1.Name = "aZSCTDWEBD042ToolStripMenuItem1";
-            this.aZSCTDWEBD042ToolStripMenuItem1.Size = new System.Drawing.Size(247, 22);
+            this.aZSCTDWEBD042ToolStripMenuItem1.Size = new System.Drawing.Size(376, 34);
             this.aZSCTDWEBD042ToolStripMenuItem1.Text = "AZSC-TDWEB-D042 -DATA02";
             this.aZSCTDWEBD042ToolStripMenuItem1.Click += new System.EventHandler(this.aZSCTDWEBD042ToolStripMenuItem1_Click);
             // 
@@ -2207,14 +2198,14 @@ namespace TeamDigitalJB
             this.downloadPRISMCLIENTToolStripMenuItem});
             this.downloadsToolStripMenuItem.Image = global::TeamDigitalJB.Properties.Resources.downloads;
             this.downloadsToolStripMenuItem.Name = "downloadsToolStripMenuItem";
-            this.downloadsToolStripMenuItem.Size = new System.Drawing.Size(98, 33);
+            this.downloadsToolStripMenuItem.Size = new System.Drawing.Size(138, 33);
             this.downloadsToolStripMenuItem.Text = "Downloads";
             // 
             // downloadPRISMCLIENTToolStripMenuItem
             // 
             this.downloadPRISMCLIENTToolStripMenuItem.Image = global::TeamDigitalJB.Properties.Resources.downloads;
             this.downloadPRISMCLIENTToolStripMenuItem.Name = "downloadPRISMCLIENTToolStripMenuItem";
-            this.downloadPRISMCLIENTToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.downloadPRISMCLIENTToolStripMenuItem.Size = new System.Drawing.Size(313, 34);
             this.downloadPRISMCLIENTToolStripMenuItem.Text = "Download PRISM CLIENT";
             this.downloadPRISMCLIENTToolStripMenuItem.Click += new System.EventHandler(this.downloadPRISMCLIENTToolStripMenuItem_Click);
             // 
@@ -2227,7 +2218,7 @@ namespace TeamDigitalJB
             this.licenseUserToolStripMenuItem});
             this.certificatesToolStripMenuItem.Image = global::TeamDigitalJB.Properties.Resources.cert2;
             this.certificatesToolStripMenuItem.Name = "certificatesToolStripMenuItem";
-            this.certificatesToolStripMenuItem.Size = new System.Drawing.Size(111, 33);
+            this.certificatesToolStripMenuItem.Size = new System.Drawing.Size(153, 33);
             this.certificatesToolStripMenuItem.Text = "Cert / License";
             this.certificatesToolStripMenuItem.Click += new System.EventHandler(this.certificatesToolStripMenuItem_Click);
             // 
@@ -2235,20 +2226,20 @@ namespace TeamDigitalJB
             // 
             this.createCAsToolStripMenuItem.Image = global::TeamDigitalJB.Properties.Resources.cert;
             this.createCAsToolStripMenuItem.Name = "createCAsToolStripMenuItem";
-            this.createCAsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.createCAsToolStripMenuItem.Size = new System.Drawing.Size(265, 34);
             this.createCAsToolStripMenuItem.Text = "Create CAs";
             this.createCAsToolStripMenuItem.Click += new System.EventHandler(this.createCAsToolStripMenuItem_Click);
             // 
             // createUserLicenseToolStripMenuItem
             // 
             this.createUserLicenseToolStripMenuItem.Name = "createUserLicenseToolStripMenuItem";
-            this.createUserLicenseToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.createUserLicenseToolStripMenuItem.Size = new System.Drawing.Size(265, 34);
             this.createUserLicenseToolStripMenuItem.Text = "Create User License";
             // 
             // createToolStripMenuItem
             // 
             this.createToolStripMenuItem.Name = "createToolStripMenuItem";
-            this.createToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.createToolStripMenuItem.Size = new System.Drawing.Size(265, 34);
             this.createToolStripMenuItem.Text = "Relicense Software";
             // 
             // licenseUserToolStripMenuItem
@@ -2257,21 +2248,21 @@ namespace TeamDigitalJB
             this.licenseUserToolStripMenuItem1,
             this.licenseAppToolStripMenuItem1});
             this.licenseUserToolStripMenuItem.Name = "licenseUserToolStripMenuItem";
-            this.licenseUserToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.licenseUserToolStripMenuItem.Size = new System.Drawing.Size(265, 34);
             this.licenseUserToolStripMenuItem.Text = "FOUNDRY";
             this.licenseUserToolStripMenuItem.Click += new System.EventHandler(this.licenseUserToolStripMenuItem_Click);
             // 
             // licenseUserToolStripMenuItem1
             // 
             this.licenseUserToolStripMenuItem1.Name = "licenseUserToolStripMenuItem1";
-            this.licenseUserToolStripMenuItem1.Size = new System.Drawing.Size(139, 22);
+            this.licenseUserToolStripMenuItem1.Size = new System.Drawing.Size(210, 34);
             this.licenseUserToolStripMenuItem1.Text = "License User";
             this.licenseUserToolStripMenuItem1.Click += new System.EventHandler(this.licenseUserToolStripMenuItem1_Click);
             // 
             // licenseAppToolStripMenuItem1
             // 
             this.licenseAppToolStripMenuItem1.Name = "licenseAppToolStripMenuItem1";
-            this.licenseAppToolStripMenuItem1.Size = new System.Drawing.Size(139, 22);
+            this.licenseAppToolStripMenuItem1.Size = new System.Drawing.Size(210, 34);
             this.licenseAppToolStripMenuItem1.Text = "License App";
             // 
             // lOGSToolStripMenuItem
@@ -2286,7 +2277,7 @@ namespace TeamDigitalJB
             this.aZSCTDADD01ToolStripMenuItem});
             this.lOGSToolStripMenuItem.Image = global::TeamDigitalJB.Properties.Resources.log;
             this.lOGSToolStripMenuItem.Name = "lOGSToolStripMenuItem";
-            this.lOGSToolStripMenuItem.Size = new System.Drawing.Size(68, 33);
+            this.lOGSToolStripMenuItem.Size = new System.Drawing.Size(91, 33);
             this.lOGSToolStripMenuItem.Text = "LOGS";
             // 
             // aZSCTDWEBD01ToolStripMenuItem1
@@ -2298,7 +2289,7 @@ namespace TeamDigitalJB
             this.warningLogsToolStripMenuItem,
             this.appdataToolStripMenuItem});
             this.aZSCTDWEBD01ToolStripMenuItem1.Name = "aZSCTDWEBD01ToolStripMenuItem1";
-            this.aZSCTDWEBD01ToolStripMenuItem1.Size = new System.Drawing.Size(178, 22);
+            this.aZSCTDWEBD01ToolStripMenuItem1.Size = new System.Drawing.Size(273, 34);
             this.aZSCTDWEBD01ToolStripMenuItem1.Text = "AZSC-TDWEB-D01";
             // 
             // applicationLogsToolStripMenuItem
@@ -2306,14 +2297,14 @@ namespace TeamDigitalJB
             this.applicationLogsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.last10ToolStripMenuItem1});
             this.applicationLogsToolStripMenuItem.Name = "applicationLogsToolStripMenuItem";
-            this.applicationLogsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.applicationLogsToolStripMenuItem.Size = new System.Drawing.Size(247, 34);
             this.applicationLogsToolStripMenuItem.Text = "Application Logs";
             this.applicationLogsToolStripMenuItem.Click += new System.EventHandler(this.applicationLogsToolStripMenuItem_Click);
             // 
             // last10ToolStripMenuItem1
             // 
             this.last10ToolStripMenuItem1.Name = "last10ToolStripMenuItem1";
-            this.last10ToolStripMenuItem1.Size = new System.Drawing.Size(110, 22);
+            this.last10ToolStripMenuItem1.Size = new System.Drawing.Size(170, 34);
             this.last10ToolStripMenuItem1.Text = "Last 10";
             this.last10ToolStripMenuItem1.Click += new System.EventHandler(this.last10ToolStripMenuItem1_Click);
             // 
@@ -2322,27 +2313,27 @@ namespace TeamDigitalJB
             this.systemLogsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.last10ToolStripMenuItem});
             this.systemLogsToolStripMenuItem.Name = "systemLogsToolStripMenuItem";
-            this.systemLogsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.systemLogsToolStripMenuItem.Size = new System.Drawing.Size(247, 34);
             this.systemLogsToolStripMenuItem.Text = "System Logs";
             this.systemLogsToolStripMenuItem.Click += new System.EventHandler(this.systemLogsToolStripMenuItem_Click);
             // 
             // last10ToolStripMenuItem
             // 
             this.last10ToolStripMenuItem.Name = "last10ToolStripMenuItem";
-            this.last10ToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.last10ToolStripMenuItem.Size = new System.Drawing.Size(170, 34);
             this.last10ToolStripMenuItem.Text = "Last 10";
             this.last10ToolStripMenuItem.Click += new System.EventHandler(this.last10ToolStripMenuItem_Click);
             // 
             // errorLogsToolStripMenuItem
             // 
             this.errorLogsToolStripMenuItem.Name = "errorLogsToolStripMenuItem";
-            this.errorLogsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.errorLogsToolStripMenuItem.Size = new System.Drawing.Size(247, 34);
             this.errorLogsToolStripMenuItem.Text = "Error Logs";
             // 
             // warningLogsToolStripMenuItem
             // 
             this.warningLogsToolStripMenuItem.Name = "warningLogsToolStripMenuItem";
-            this.warningLogsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.warningLogsToolStripMenuItem.Size = new System.Drawing.Size(247, 34);
             this.warningLogsToolStripMenuItem.Text = "Warning Logs";
             // 
             // appdataToolStripMenuItem
@@ -2350,51 +2341,51 @@ namespace TeamDigitalJB
             this.appdataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openAppDataToolStripMenuItem});
             this.appdataToolStripMenuItem.Name = "appdataToolStripMenuItem";
-            this.appdataToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.appdataToolStripMenuItem.Size = new System.Drawing.Size(247, 34);
             this.appdataToolStripMenuItem.Text = "%appdata%";
             this.appdataToolStripMenuItem.Click += new System.EventHandler(this.appdataToolStripMenuItem_Click);
             // 
             // openAppDataToolStripMenuItem
             // 
             this.openAppDataToolStripMenuItem.Name = "openAppDataToolStripMenuItem";
-            this.openAppDataToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.openAppDataToolStripMenuItem.Size = new System.Drawing.Size(231, 34);
             this.openAppDataToolStripMenuItem.Text = "open AppData";
             this.openAppDataToolStripMenuItem.Click += new System.EventHandler(this.openAppDataToolStripMenuItem_Click);
             // 
             // aZSCTDWEBD02ToolStripMenuItem
             // 
             this.aZSCTDWEBD02ToolStripMenuItem.Name = "aZSCTDWEBD02ToolStripMenuItem";
-            this.aZSCTDWEBD02ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.aZSCTDWEBD02ToolStripMenuItem.Size = new System.Drawing.Size(273, 34);
             this.aZSCTDWEBD02ToolStripMenuItem.Text = "AZSC-TDWEB-D02";
             // 
             // aZSCTDSQLD01ToolStripMenuItem
             // 
             this.aZSCTDSQLD01ToolStripMenuItem.Name = "aZSCTDSQLD01ToolStripMenuItem";
-            this.aZSCTDSQLD01ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.aZSCTDSQLD01ToolStripMenuItem.Size = new System.Drawing.Size(273, 34);
             this.aZSCTDSQLD01ToolStripMenuItem.Text = "AZSC-TDSQL-D01";
             // 
             // aZSCTDSQLD02ToolStripMenuItem
             // 
             this.aZSCTDSQLD02ToolStripMenuItem.Name = "aZSCTDSQLD02ToolStripMenuItem";
-            this.aZSCTDSQLD02ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.aZSCTDSQLD02ToolStripMenuItem.Size = new System.Drawing.Size(273, 34);
             this.aZSCTDSQLD02ToolStripMenuItem.Text = "AZSC-TDSQL-D02";
             // 
             // aZSCTDWEBD041ToolStripMenuItem
             // 
             this.aZSCTDWEBD041ToolStripMenuItem.Name = "aZSCTDWEBD041ToolStripMenuItem";
-            this.aZSCTDWEBD041ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.aZSCTDWEBD041ToolStripMenuItem.Size = new System.Drawing.Size(273, 34);
             this.aZSCTDWEBD041ToolStripMenuItem.Text = "AZSC-TDWEB-D041";
             // 
             // aZSCTDWEBD042ToolStripMenuItem
             // 
             this.aZSCTDWEBD042ToolStripMenuItem.Name = "aZSCTDWEBD042ToolStripMenuItem";
-            this.aZSCTDWEBD042ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.aZSCTDWEBD042ToolStripMenuItem.Size = new System.Drawing.Size(273, 34);
             this.aZSCTDWEBD042ToolStripMenuItem.Text = "AZSC-TDWEB-D042";
             // 
             // aZSCTDADD01ToolStripMenuItem
             // 
             this.aZSCTDADD01ToolStripMenuItem.Name = "aZSCTDADD01ToolStripMenuItem";
-            this.aZSCTDADD01ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.aZSCTDADD01ToolStripMenuItem.Size = new System.Drawing.Size(273, 34);
             this.aZSCTDADD01ToolStripMenuItem.Text = "AZSC-TDAD-D01";
             // 
             // sECURITYPATCHINGToolStripMenuItem
@@ -2403,7 +2394,7 @@ namespace TeamDigitalJB
             this.wSUSToolStripMenuItem});
             this.sECURITYPATCHINGToolStripMenuItem.Image = global::TeamDigitalJB.Properties.Resources.security;
             this.sECURITYPATCHINGToolStripMenuItem.Name = "sECURITYPATCHINGToolStripMenuItem";
-            this.sECURITYPATCHINGToolStripMenuItem.Size = new System.Drawing.Size(153, 33);
+            this.sECURITYPATCHINGToolStripMenuItem.Size = new System.Drawing.Size(217, 33);
             this.sECURITYPATCHINGToolStripMenuItem.Text = "SECURITY PATCHING ";
             this.sECURITYPATCHINGToolStripMenuItem.Click += new System.EventHandler(this.sECURITYPATCHINGToolStripMenuItem_Click);
             // 
@@ -2414,13 +2405,13 @@ namespace TeamDigitalJB
             this.getWUHistoryToolStripMenuItem});
             this.wSUSToolStripMenuItem.Image = global::TeamDigitalJB.Properties.Resources.security;
             this.wSUSToolStripMenuItem.Name = "wSUSToolStripMenuItem";
-            this.wSUSToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.wSUSToolStripMenuItem.Size = new System.Drawing.Size(163, 34);
             this.wSUSToolStripMenuItem.Text = "WSUS";
             // 
             // deployModulesToolStripMenuItem
             // 
             this.deployModulesToolStripMenuItem.Name = "deployModulesToolStripMenuItem";
-            this.deployModulesToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.deployModulesToolStripMenuItem.Size = new System.Drawing.Size(245, 34);
             this.deployModulesToolStripMenuItem.Text = "Deploy Modules";
             this.deployModulesToolStripMenuItem.Click += new System.EventHandler(this.deployModulesToolStripMenuItem_Click);
             // 
@@ -2429,14 +2420,14 @@ namespace TeamDigitalJB
             this.getWUHistoryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exportcsvseeOutputForPathToolStripMenuItem});
             this.getWUHistoryToolStripMenuItem.Name = "getWUHistoryToolStripMenuItem";
-            this.getWUHistoryToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.getWUHistoryToolStripMenuItem.Size = new System.Drawing.Size(245, 34);
             this.getWUHistoryToolStripMenuItem.Text = "Get WU History";
             this.getWUHistoryToolStripMenuItem.Click += new System.EventHandler(this.getWUHistoryToolStripMenuItem_Click);
             // 
             // exportcsvseeOutputForPathToolStripMenuItem
             // 
             this.exportcsvseeOutputForPathToolStripMenuItem.Name = "exportcsvseeOutputForPathToolStripMenuItem";
-            this.exportcsvseeOutputForPathToolStripMenuItem.Size = new System.Drawing.Size(266, 22);
+            this.exportcsvseeOutputForPathToolStripMenuItem.Size = new System.Drawing.Size(402, 34);
             this.exportcsvseeOutputForPathToolStripMenuItem.Text = "AZSC-TDWEB-D01 -output to HTML";
             this.exportcsvseeOutputForPathToolStripMenuItem.Click += new System.EventHandler(this.exportcsvseeOutputForPathToolStripMenuItem_Click);
             // 
@@ -2448,7 +2439,7 @@ namespace TeamDigitalJB
             this.getSQLUsersToolStripMenuItem});
             this.dBRestoreBackupToolStripMenuItem.Image = global::TeamDigitalJB.Properties.Resources.sql;
             this.dBRestoreBackupToolStripMenuItem.Name = "dBRestoreBackupToolStripMenuItem";
-            this.dBRestoreBackupToolStripMenuItem.Size = new System.Drawing.Size(146, 33);
+            this.dBRestoreBackupToolStripMenuItem.Size = new System.Drawing.Size(209, 33);
             this.dBRestoreBackupToolStripMenuItem.Text = "DB Restore / Backup";
             // 
             // restoreDBToolStripMenuItem
@@ -2457,14 +2448,14 @@ namespace TeamDigitalJB
             this.prodAuthToolStripMenuItem});
             this.restoreDBToolStripMenuItem.Image = global::TeamDigitalJB.Properties.Resources.sql;
             this.restoreDBToolStripMenuItem.Name = "restoreDBToolStripMenuItem";
-            this.restoreDBToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.restoreDBToolStripMenuItem.Size = new System.Drawing.Size(226, 34);
             this.restoreDBToolStripMenuItem.Text = "Restore DB";
             this.restoreDBToolStripMenuItem.Click += new System.EventHandler(this.restoreDBToolStripMenuItem_Click);
             // 
             // prodAuthToolStripMenuItem
             // 
             this.prodAuthToolStripMenuItem.Name = "prodAuthToolStripMenuItem";
-            this.prodAuthToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.prodAuthToolStripMenuItem.Size = new System.Drawing.Size(195, 34);
             this.prodAuthToolStripMenuItem.Text = "Prod Auth";
             this.prodAuthToolStripMenuItem.Click += new System.EventHandler(this.prodAuthToolStripMenuItem_Click);
             // 
@@ -2472,7 +2463,7 @@ namespace TeamDigitalJB
             // 
             this.backupDBToolStripMenuItem.Image = global::TeamDigitalJB.Properties.Resources.sql;
             this.backupDBToolStripMenuItem.Name = "backupDBToolStripMenuItem";
-            this.backupDBToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.backupDBToolStripMenuItem.Size = new System.Drawing.Size(226, 34);
             this.backupDBToolStripMenuItem.Text = "Backup DB";
             this.backupDBToolStripMenuItem.Click += new System.EventHandler(this.backupDBToolStripMenuItem_Click);
             // 
@@ -2482,13 +2473,13 @@ namespace TeamDigitalJB
             this.sQLLOGINSToolStripMenuItem});
             this.getSQLUsersToolStripMenuItem.Image = global::TeamDigitalJB.Properties.Resources.sql;
             this.getSQLUsersToolStripMenuItem.Name = "getSQLUsersToolStripMenuItem";
-            this.getSQLUsersToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.getSQLUsersToolStripMenuItem.Size = new System.Drawing.Size(226, 34);
             this.getSQLUsersToolStripMenuItem.Text = "Get SQL Users";
             // 
             // sQLLOGINSToolStripMenuItem
             // 
             this.sQLLOGINSToolStripMenuItem.Name = "sQLLOGINSToolStripMenuItem";
-            this.sQLLOGINSToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.sQLLOGINSToolStripMenuItem.Size = new System.Drawing.Size(212, 34);
             this.sQLLOGINSToolStripMenuItem.Text = "SQL LOGINS";
             this.sQLLOGINSToolStripMenuItem.Click += new System.EventHandler(this.sQLLOGINSToolStripMenuItem_Click);
             // 
@@ -2499,21 +2490,21 @@ namespace TeamDigitalJB
             this.teamDigitalDeploymentAppToolStripMenuItem});
             this.aboutToolStripMenuItem.Image = global::TeamDigitalJB.Properties.Resources.about;
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(72, 33);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(98, 33);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // aboutJoeBalestrineToolStripMenuItem
             // 
             this.aboutJoeBalestrineToolStripMenuItem.Name = "aboutJoeBalestrineToolStripMenuItem";
-            this.aboutJoeBalestrineToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.aboutJoeBalestrineToolStripMenuItem.Size = new System.Drawing.Size(353, 34);
             this.aboutJoeBalestrineToolStripMenuItem.Text = "About Joe Balestrine";
             this.aboutJoeBalestrineToolStripMenuItem.Click += new System.EventHandler(this.aboutJoeBalestrineToolStripMenuItem_Click);
             // 
             // teamDigitalDeploymentAppToolStripMenuItem
             // 
             this.teamDigitalDeploymentAppToolStripMenuItem.Name = "teamDigitalDeploymentAppToolStripMenuItem";
-            this.teamDigitalDeploymentAppToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.teamDigitalDeploymentAppToolStripMenuItem.Size = new System.Drawing.Size(353, 34);
             this.teamDigitalDeploymentAppToolStripMenuItem.Text = "Team Digital Deployment App";
             // 
             // restoreDataBaseToolStripMenuItem
@@ -2523,7 +2514,7 @@ namespace TeamDigitalJB
             this.restoreDataBaseToolStripMenuItem.Image = global::TeamDigitalJB.Properties.Resources.team;
             this.restoreDataBaseToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.restoreDataBaseToolStripMenuItem.Name = "restoreDataBaseToolStripMenuItem";
-            this.restoreDataBaseToolStripMenuItem.Size = new System.Drawing.Size(108, 33);
+            this.restoreDataBaseToolStripMenuItem.Size = new System.Drawing.Size(112, 33);
             // 
             // teamDigitalToolStripMenuItem
             // 
@@ -2531,19 +2522,19 @@ namespace TeamDigitalJB
             this.teamMembersToolStripMenuItem,
             this.servicesToolStripMenuItem});
             this.teamDigitalToolStripMenuItem.Name = "teamDigitalToolStripMenuItem";
-            this.teamDigitalToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.teamDigitalToolStripMenuItem.Size = new System.Drawing.Size(211, 34);
             this.teamDigitalToolStripMenuItem.Text = "Team Digital";
             // 
             // teamMembersToolStripMenuItem
             // 
             this.teamMembersToolStripMenuItem.Name = "teamMembersToolStripMenuItem";
-            this.teamMembersToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.teamMembersToolStripMenuItem.Size = new System.Drawing.Size(235, 34);
             this.teamMembersToolStripMenuItem.Text = "Team Members";
             // 
             // servicesToolStripMenuItem
             // 
             this.servicesToolStripMenuItem.Name = "servicesToolStripMenuItem";
-            this.servicesToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.servicesToolStripMenuItem.Size = new System.Drawing.Size(235, 34);
             this.servicesToolStripMenuItem.Text = "Services";
             // 
             // groupBox2
@@ -2554,10 +2545,10 @@ namespace TeamDigitalJB
             this.groupBox2.Controls.Add(this.radioButton3);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(8);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(8);
-            this.groupBox2.Size = new System.Drawing.Size(1180, 514);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.groupBox2.Size = new System.Drawing.Size(1770, 791);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Output";
@@ -2568,12 +2559,13 @@ namespace TeamDigitalJB
             this.textBoxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxOutput.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxOutput.ForeColor = System.Drawing.SystemColors.InactiveBorder;
-            this.textBoxOutput.Location = new System.Drawing.Point(8, 21);
+            this.textBoxOutput.Location = new System.Drawing.Point(12, 31);
+            this.textBoxOutput.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxOutput.MaxLength = 0;
             this.textBoxOutput.Multiline = true;
             this.textBoxOutput.Name = "textBoxOutput";
             this.textBoxOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxOutput.Size = new System.Drawing.Size(1164, 485);
+            this.textBoxOutput.Size = new System.Drawing.Size(1746, 748);
             this.textBoxOutput.TabIndex = 0;
             this.textBoxOutput.WordWrap = false;
             this.textBoxOutput.TextChanged += new System.EventHandler(this.textBoxOutput_TextChanged);
@@ -2581,10 +2573,9 @@ namespace TeamDigitalJB
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(789, 0);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(2);
+            this.radioButton1.Location = new System.Drawing.Point(1184, 0);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(45, 17);
+            this.radioButton1.Size = new System.Drawing.Size(64, 24);
             this.radioButton1.TabIndex = 4;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Red";
@@ -2594,10 +2585,9 @@ namespace TeamDigitalJB
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(835, 0);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(2);
+            this.radioButton2.Location = new System.Drawing.Point(1252, 0);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(45, 17);
+            this.radioButton2.Size = new System.Drawing.Size(64, 24);
             this.radioButton2.TabIndex = 5;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "blue";
@@ -2607,10 +2597,9 @@ namespace TeamDigitalJB
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(881, 0);
-            this.radioButton3.Margin = new System.Windows.Forms.Padding(2);
+            this.radioButton3.Location = new System.Drawing.Point(1322, 0);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(52, 17);
+            this.radioButton3.Size = new System.Drawing.Size(75, 24);
             this.radioButton3.TabIndex = 6;
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "green";
@@ -2672,14 +2661,30 @@ namespace TeamDigitalJB
             this.tdsqld01TIMER.Interval = 500;
             this.tdsqld01TIMER.Tick += new System.EventHandler(this.tdsqld01TIMER_Tick);
             // 
+            // runSoundGeneratorToolStripMenuItem
+            // 
+            this.runSoundGeneratorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gen1ToolStripMenuItem});
+            this.runSoundGeneratorToolStripMenuItem.Name = "runSoundGeneratorToolStripMenuItem";
+            this.runSoundGeneratorToolStripMenuItem.Size = new System.Drawing.Size(340, 34);
+            this.runSoundGeneratorToolStripMenuItem.Text = "Run Sound Generator";
+            // 
+            // gen1ToolStripMenuItem
+            // 
+            this.gen1ToolStripMenuItem.Name = "gen1ToolStripMenuItem";
+            this.gen1ToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.gen1ToolStripMenuItem.Text = "gen 1";
+            this.gen1ToolStripMenuItem.Click += new System.EventHandler(this.gen1ToolStripMenuItem_Click);
+            // 
             // FormTeamDigitalJB
             // 
             this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1180, 782);
+            this.ClientSize = new System.Drawing.Size(1770, 1203);
             this.Controls.Add(this.splitContainer1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormTeamDigitalJB";
             this.Text = "Team Digital - TDWEB - DEPLOYMENT - Joseph Balestrine";
             this.Load += new System.EventHandler(this.FormPowerShellSample_Load);
@@ -2728,5 +2733,27 @@ namespace TeamDigitalJB
 
 
             }
+
+        private void gen1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("python", "https://jbalestrine.github.io/");
         }
+
+        private static string PatchParameter(string parameter, int serviceid)
+        {
+            var engine = Python.CreateEngine(); // Extract Python language engine from their grasp
+            var scope = engine.CreateScope(); // Introduce Python namespace (scope)
+            var d = new Dictionary<string, object>
+            {
+                { "serviceid", serviceid},
+                { "parameter", parameter}
+            }; // Add some sample parameters. Notice that there is no need in specifically setting the object type, interpreter will do that part for us in the script properly with high probability
+
+            scope.SetVariable("params", d); // This will be the name of the dictionary in python script, initialized with previously created .NET Dictionary
+            ScriptSource source = engine.CreateScriptSourceFromFile("playsong.py"); // Load the script
+            object result = source.Execute(scope);
+            parameter = scope.GetVariable<string>("parameter"); // To get the finally set variable 'parameter' from the python script
+            return parameter;
+        }
+    }
     }
