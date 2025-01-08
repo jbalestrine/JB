@@ -59,5 +59,15 @@ namespace Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] playsong {
+            get {
+                object obj = ResourceManager.GetObject("playsong", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }
